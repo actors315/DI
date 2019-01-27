@@ -11,6 +11,11 @@ branches:
 install:
   - composer install --prefer-dist --optimize-autoloader --quiet
 
+before_script:
+  - cd tests/
+  - git clone -b gh-pages https://github.com/actors315/DI.git tests/
+  - cd tests/
+
 script:
   - ./vendor/bin/phpunit --coverage-html=./tests/tests/$(phpenv version-name)/
 
