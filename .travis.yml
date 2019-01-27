@@ -1,0 +1,27 @@
+language: php
+php:
+  - '5.6'
+  - '7.2'
+
+# 项目所在分支
+branches:
+  only:
+  - master
+
+install:
+  - composer install --prefer-dist --optimize-autoloader --quiet
+
+script:
+  - ./vendor/bin/phpunit --coverage-html=./tests/tests/$(phpenv version-name)
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_ACCESS_TOKEN
+  target-branch: gh-pages
+  local_dir: tests/tests/
+  keep-history: true
+  on:
+    branch: master
+
+
