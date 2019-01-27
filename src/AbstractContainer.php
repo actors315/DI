@@ -50,13 +50,6 @@ abstract class AbstractContainer implements ContainerInterface
 
     public function make($name)
     {
-        $params = [];
-        if (is_array($name) && isset($name['class'])) {
-            $params = $name;
-            $name = $name['class'];
-            unset($params['class']);
-        }
-
         if (!is_string($name)) {
             throw new \InvalidArgumentException(sprintf(
                 'The name parameter must be of type string, %s given',
@@ -73,6 +66,12 @@ abstract class AbstractContainer implements ContainerInterface
         }
 
         $definition = $this->definitions[$name];
+        $params = [];
+        if (is_array($definition) && isset($definition['class'])) {
+            $params = $definition;
+            $definition = $definition['class'];
+            unset($params['class']);
+        }
 
         $object = $this->reflector($definition, $params);
 
