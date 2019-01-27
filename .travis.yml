@@ -17,10 +17,10 @@ script:
 deploy:
   provider: pages
   skip-cleanup: true
+  keep-history: true
   github-token: $GITHUB_ACCESS_TOKEN
   target-branch: gh-pages
   local_dir: tests/tests/
-  keep-history: true
   on:
     branch: master
 
