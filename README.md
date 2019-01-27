@@ -43,6 +43,7 @@ class HelloService
 
 namespace App\Controllers;
 use App\Services\HelloService;
+use Twinkle\DI\ServiceLocatorTrait;
 
 /**
  * Class HelloController

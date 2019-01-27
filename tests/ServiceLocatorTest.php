@@ -10,7 +10,6 @@ namespace Twinkle\DI;
 
 
 use PHPUnit\Framework\TestCase;
-use Twinkle\DI\Exception\ContainerException;
 use Twinkle\DI\Exception\NotFoundException;
 
 /**
