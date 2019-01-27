@@ -29,6 +29,7 @@ class ContainerTest extends TestCase
         ];
         $container = new Container($definitions);
         $this->assertEquals(true, isset($container['test']));
+        $this->assertInstanceOf(HelloWorld::class,$container['test']);
         $container['test1'] = function () {
             return new HelloWorld();
         };
