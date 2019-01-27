@@ -12,7 +12,7 @@ install:
   - composer install --prefer-dist --optimize-autoloader --quiet
 
 script:
-  - ./vendor/bin/phpunit --coverage-html=./tests/tests/$(phpenv version-name)
+  - ./vendor/bin/phpunit --coverage-html=./tests/tests/$(phpenv version-name)/
 
 deploy:
   provider: pages
