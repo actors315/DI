@@ -4,6 +4,12 @@
 
 [![Build Status](https://travis-ci.org/actors315/DI.svg?branch=master)](https://travis-ci.org/actors315/DI)  
 
+## 安装  
+
+```
+composer require twinkle/di --prefer-dist --optimize-autoloader
+```
+
 ## 示例
 
 Container  
