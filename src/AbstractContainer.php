@@ -41,6 +41,13 @@ abstract class AbstractContainer implements ContainerInterface
      */
     public function injection($id, $concrete)
     {
+        if (!is_string($id)) {
+            throw new \InvalidArgumentException(sprintf(
+                'The id parameter must be of type string, %s given',
+                is_object($id) ? get_class($id) : gettype($id)
+            ));
+        }
+
         if (is_array($concrete) && !isset($concrete['class'])) {
             throw new ContainerException('数组必须包含类定义');
         }
@@ -48,21 +55,11 @@ abstract class AbstractContainer implements ContainerInterface
         $this->definitions[$id] = $concrete;
     }
 
-    public function make($name)
+    protected function make($name)
     {
-        if (!is_string($name)) {
-            throw new \InvalidArgumentException(sprintf(
-                'The name parameter must be of type string, %s given',
-                is_object($name) ? get_class($name) : gettype($name)
-            ));
-        }
 
         if (isset($this->resolvedEntries[$name])) {
             return $this->resolvedEntries[$name];
-        }
-
-        if (!$this->has($name)) {
-            throw new NotFoundException("No entry or class found for {$name}");
         }
 
         $definition = $this->definitions[$name];
@@ -92,6 +89,8 @@ abstract class AbstractContainer implements ContainerInterface
         } elseif (is_object($concrete)) {
             return $concrete;
         }
+
+        throw new ContainerException('获取对象实例失败');
     }
 
     /**
