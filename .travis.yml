@@ -29,4 +29,5 @@ deploy:
   on:
     branch: master
 
-
+after_success:
+ - git push https://actors315:$GITEE_COM_TOKEN@gitee.com/actors315/DI.git --all
