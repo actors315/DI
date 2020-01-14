@@ -13,6 +13,14 @@ class Tools
 {
     protected static $container;
 
+    /**
+     * @param Container $container
+     */
+    public static function setContainer($container)
+    {
+        self::$container = $container;
+    }
+
     public static function getContainer()
     {
         if (self::$container == null) {
